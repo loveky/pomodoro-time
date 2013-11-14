@@ -14,7 +14,12 @@
 }
 
 .schedule-list {
+  padding: 0;
   border: 1px solid #e7e7e7;
   height: 100%;
   overflow: auto;
+}
+
+.schedule-item:hover {
+  background-color: #f5f5f5;
 }

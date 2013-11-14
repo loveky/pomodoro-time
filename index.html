@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pomodoroApp">
   <head>
     <title>番茄时间</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,8 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/customized.css" rel="stylesheet">
     <script src="js/angular.min.js"></script>
+    <script src="js/application.js"></script>
+    <script src="js/controller.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -14,12 +16,24 @@
         <a class="navbar-brand" href="#">番茄时间</a>
       </div>
     </nav>
-    <div class="row main-content">
+    <div class="row main-content" ng-controller="pomodoroController">
       <div class="col-md-6 stage">
       </div>
       <div class="col-md-3 schedule-list">
+        <ul class="list-unstyled schedule-list">
+          <li class="schedule-item" ng-repeat="item in todaySchedledItems">{{ item.name }}</li>
+        </ul>
       </div>
       <div class="col-md-3 schedule-list">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="newScheduledItem">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="addItemToList()">添加任务</button>
+          </span>
+        </div>
+        <ul class="list-unstyled">
+          <li class="schedule-item" ng-repeat="item in allScheduledItems">{{ item.name }}</li>
+        </ul>
       </div>
     </div>
   </body>
