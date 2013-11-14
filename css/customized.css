@@ -1,0 +1,20 @@
+.main-content {
+  overflow: hidden;
+  position: absolute;
+  top: 52px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.stage {
+  border: 1px solid #e7e7e7;
+}
+
+.schedule-list {
+  border: 1px solid #e7e7e7;
+  height: 100%;
+  overflow: auto;
+}
