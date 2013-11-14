@@ -1,4 +1,4 @@
-play-with-angularjs
+番茄时间
 ===================
 
-玩转angularjs
+AngularJS1.2 + Bootstrap3
