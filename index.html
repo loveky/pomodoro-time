@@ -20,26 +20,26 @@
     <div class="row main-content" ng-controller="pomodoroController">
       <div class="col-md-6 stage">
       </div>
-      <div class="col-md-3 schedule-list">
-        <ul class="list-unstyled schedule-list">
-          <li class="schedule-item" ng-repeat="item in allScheduledItems | filter:{todayItem:true}">{{ item.title }}</li>
+      <div class="col-md-3 task-list">
+        <ul class="list-unstyled">
+          <li class="task" ng-repeat="task in allTasks | filter:{today:true}">{{ task.title }}</li>
         </ul>
       </div>
-      <div class="col-md-3 schedule-list">
+      <div class="col-md-3 task-list">
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="newScheduledItem.title">
+          <input type="text" class="form-control" ng-model="newTask.title">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ng-click="addItemToList()">添加任务</button>
+            <button class="btn btn-default" type="button" ng-click="addTask()">添加任务</button>
           </span>
         </div>
           <div class="checkbox">
           <label>
-            <input type="checkbox" value="" ng-model="newScheduledItem.todayItem">
+            <input type="checkbox" value="" ng-model="newTask.today">
             加入今日代办事项
           </label>
         </div>
         <ul class="list-unstyled">
-          <li class="schedule-item" ng-repeat="item in allScheduledItems">{{ item.title }}</li>
+          <li class="task" ng-repeat="task in allTasks">{{ task.title }}</li>
         </ul>
       </div>
     </div>
