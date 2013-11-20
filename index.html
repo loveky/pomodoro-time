@@ -20,12 +20,12 @@
     <div class="row main-content" ng-controller="pomodoroController">
       <div class="col-md-6 stage">
       </div>
-      <div class="col-md-3 task-list">
+      <div class="col-md-3 task-list-container">
         <ul class="list-unstyled">
           <li class="task" ng-repeat="task in allTasks | filter:{today:true}">{{ task.title }}</li>
         </ul>
       </div>
-      <div class="col-md-3 task-list">
+      <div class="col-md-3 task-list-container">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="newTask.title">
           <span class="input-group-btn">
