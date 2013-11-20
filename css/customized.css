@@ -11,13 +11,35 @@
 
 .stage {
   border: 1px solid #e7e7e7;
+  min-width: 700px;
+  margin-right: 498px;
 }
 
-.task-list-container {
+.task-list-container-outer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
   padding: 0;
   border: 1px solid #e7e7e7;
   height: 100%;
+}
+
+.task-list-container-inner {
+
+}
+
+.task-list {
+  padding: 0;
+  position: absolute;
+  left: 0;
+  width: 50%;
   overflow: auto;
+  height: 100%;
+}
+
+.task-list:last-child {
+  left: 50%;
 }
 
 .task:hover {

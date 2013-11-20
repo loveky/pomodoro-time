@@ -17,15 +17,10 @@
         <a class="navbar-brand" href="#">番茄时间</a>
       </div>
     </nav>
-    <div class="row main-content" ng-controller="pomodoroController">
-      <div class="col-md-6 stage">
+    <div class="main-content" ng-controller="pomodoroController">
+      <div class="stage">
       </div>
-      <div class="col-md-3 task-list-container">
-        <ul class="list-unstyled">
-          <li class="task" ng-repeat="task in allTasks | filter:{today:true}">{{ task.title }}</li>
-        </ul>
-      </div>
-      <div class="col-md-3 task-list-container">
+      <div class="task-list-container-outer">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="newTask.title">
           <span class="input-group-btn">
@@ -33,9 +28,14 @@
             <button class="btn btn-info" type="button" ng-click="addTask(false)"><i class="fa fa-plus"></i> 候选任务</button>
           </span>
         </div>
-        <ul class="list-unstyled">
-          <li class="task" ng-repeat="task in allTasks | filter:{today:false}">{{ task.title }}</li>
-        </ul>
+        <div class="task-list-container-inner">
+          <ul class="list-unstyled task-list">
+            <li class="task" ng-repeat="task in allTasks | filter:{today:true}">{{ task.title }}</li>
+          </ul>
+          <ul class="list-unstyled task-list">
+            <li class="task" ng-repeat="task in allTasks | filter:{today:false}">{{ task.title }}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </body>
