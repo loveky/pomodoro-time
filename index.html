@@ -29,17 +29,12 @@
         <div class="input-group">
           <input type="text" class="form-control" ng-model="newTask.title">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ng-click="addTask()">添加任务</button>
+            <button class="btn btn-primary" type="button" ng-click="addTask(true)"><i class="fa fa-plus"></i> 今日任务</button>
+            <button class="btn btn-info" type="button" ng-click="addTask(false)"><i class="fa fa-plus"></i> 候选任务</button>
           </span>
         </div>
-          <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="newTask.today">
-            加入今日代办事项
-          </label>
-        </div>
         <ul class="list-unstyled">
-          <li class="task" ng-repeat="task in allTasks">{{ task.title }}</li>
+          <li class="task" ng-repeat="task in allTasks | filter:{today:false}">{{ task.title }}</li>
         </ul>
       </div>
     </div>

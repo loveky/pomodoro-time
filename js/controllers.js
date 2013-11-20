@@ -6,8 +6,13 @@ angular.module('pomodoroApp.controllers', []).
       {title: "打豆豆", today: false}
     ];
 
-    $scope.addTask = function() {
-      $scope.allTasks.push($scope.newTask);
+    $scope.addTask = function(today) {
+      if (typeof $scope.newTask === "undefined") {
+        return false;
+      }
+      task = $scope.newTask;
+      task.today = today;
+      $scope.allTasks.push(task);
       $scope.newTask = {};
     };
   }]);
