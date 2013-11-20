@@ -1,1 +1,3 @@
-var pomodoroAppModule = angular.module('pomodoroApp', []);
+angular.module('pomodoroApp', [
+  'pomodoroApp.controllers'
+]);

@@ -6,9 +6,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/customized.css" rel="stylesheet">
+
     <script src="js/angular.min.js"></script>
     <script src="js/application.js"></script>
-    <script src="js/controller.js"></script>
+    <script src="js/controllers.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -21,18 +22,24 @@
       </div>
       <div class="col-md-3 schedule-list">
         <ul class="list-unstyled schedule-list">
-          <li class="schedule-item" ng-repeat="item in todaySchedledItems">{{ item.name }}</li>
+          <li class="schedule-item" ng-repeat="item in allScheduledItems | filter:{todayItem:true}">{{ item.title }}</li>
         </ul>
       </div>
       <div class="col-md-3 schedule-list">
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="newScheduledItem">
+          <input type="text" class="form-control" ng-model="newScheduledItem.title">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="addItemToList()">添加任务</button>
           </span>
         </div>
+          <div class="checkbox">
+          <label>
+            <input type="checkbox" value="" ng-model="newScheduledItem.todayItem">
+            加入今日代办事项
+          </label>
+        </div>
         <ul class="list-unstyled">
-          <li class="schedule-item" ng-repeat="item in allScheduledItems">{{ item.name }}</li>
+          <li class="schedule-item" ng-repeat="item in allScheduledItems">{{ item.title }}</li>
         </ul>
       </div>
     </div>
