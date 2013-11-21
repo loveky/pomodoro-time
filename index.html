@@ -32,14 +32,20 @@
           <div>
             <p>今日任务列表</p>
             <ul class="list-unstyled task-list">
-              <li class="task" ng-repeat="task in allTasks | filter:{today:true}">{{ task.title }}</li>
+              <li class="task" ng-repeat="task in allTasks | filter:{today:true}">
+                {{ task.title }}
+                <button type="button" class="btn btn-warning btn-xs pull-right" ng-click="task.today=false">移至候选任务</button>
+              </li>
             </ul>
           </div>
           <div>
             <p>候选任务列表</p>
             <div>
             <ul class="list-unstyled task-list">
-              <li class="task" ng-repeat="task in allTasks | filter:{today:false}">{{ task.title }}</li>
+              <li class="task" ng-repeat="task in allTasks | filter:{today:false}">
+                {{ task.title }}
+                <button type="button" class="btn btn-warning btn-xs pull-right" ng-click="task.today=true">移至今日任务</button>
+              </li>
             </ul>
             </div>
           </div>
