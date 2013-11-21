@@ -15,4 +15,12 @@ angular.module('pomodoroApp.controllers', []).
       $scope.allTasks.push(task);
       $scope.newTask = {};
     };
+
+    $scope.removeTask = function(task) {
+      for(index in $scope.allTasks) {
+        if($scope.allTasks[index] === task) {
+          $scope.allTasks.splice(index, 1);
+        }
+      }
+    };
   }]);

@@ -37,7 +37,7 @@
                 <div class="task-operation-container pull-right">
                   <button type="button" class="btn btn-success btn-xs"><i class="fa fa-play"></i></button>
                   <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
-                  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
                 </div>
               </li>
             </ul>
@@ -50,7 +50,7 @@
                 {{ task.title }}
                 <div class="task-operation-container pull-right">
                   <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
                 </div>
               </li>
             </ul>

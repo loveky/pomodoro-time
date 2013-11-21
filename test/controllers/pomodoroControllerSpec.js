@@ -22,5 +22,10 @@ describe('controllers', function(){
       $scope.addTask()
       expect($scope.allTasks.length).toEqual(3);
     });
+
+    it("should remove task", function() {
+      $scope.removeTask($scope.allTasks[0])
+      expect($scope.allTasks.length).toEqual(2);
+    });
   });
 });
