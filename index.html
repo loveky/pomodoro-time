@@ -34,7 +34,11 @@
             <ul class="list-unstyled task-list">
               <li class="task" ng-repeat="task in allTasks | filter:{today:true}">
                 {{ task.title }}
-                <button type="button" class="btn btn-warning btn-xs pull-right" ng-click="task.today=false">移至候选任务</button>
+                <div class="task-operation-container pull-right">
+                  <button type="button" class="btn btn-success btn-xs"><i class="fa fa-play"></i></button>
+                  <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+                </div>
               </li>
             </ul>
           </div>
@@ -44,7 +48,10 @@
             <ul class="list-unstyled task-list">
               <li class="task" ng-repeat="task in allTasks | filter:{today:false}">
                 {{ task.title }}
-                <button type="button" class="btn btn-warning btn-xs pull-right" ng-click="task.today=true">移至今日任务</button>
+                <div class="task-operation-container pull-right">
+                  <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+                </div>
               </li>
             </ul>
             </div>

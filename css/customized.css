@@ -54,10 +54,10 @@
   background-color: #f5f5f5;
 }
 
-.task button {
+.task .task-operation-container {
   display: none;
 }
 
-.task:hover button {
+.task:hover .task-operation-container {
   display: block;
 }
