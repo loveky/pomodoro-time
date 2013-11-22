@@ -84,5 +84,13 @@ describe('controllers', function(){
         expect(mytimeout).toBeDefined();
       });
     });
+
+    describe('#secondsToMMSS', function() {
+      it("should convert seconds to MM:SS format", function() {
+        expect($scope.secondsToMMSS(100)).toEqual("01:40");
+        expect($scope.secondsToMMSS(66)).toEqual("01:06");
+        expect($scope.secondsToMMSS(671)).toEqual("11:11");
+      });
+    });
   });
 });

@@ -20,6 +20,7 @@ angular.module('pomodoroApp.controllers', []).
     $scope.onTimeout = function(){
         $scope.timerStatus.count++;
         $scope.timerStatus.percentage = $scope.timerStatus.count / (25 * 60);
+        $scope.timerStatus.label = $scope.secondsToMMSS(25 * 60 - $scope.timerStatus.count);
         mytimeout = $timeout($scope.onTimeout,1000);
     };
 
@@ -55,5 +56,17 @@ angular.module('pomodoroApp.controllers', []).
     $scope.startTask = function(task) {
       $scope.activeTask = task;
       $scope.startTimer();
+    };
+
+    $scope.secondsToMMSS =  function(timeInSeconds) {
+      var minutes = Math.floor(timeInSeconds / 60);
+      var seconds = timeInSeconds - minutes * 60;
+      if(minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      if(seconds < 10) {
+        seconds = "0" + seconds
+      }
+      return minutes + ":" + seconds;
     };
   }]);
