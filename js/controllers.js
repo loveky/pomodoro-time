@@ -23,7 +23,7 @@ angular.module('pomodoroApp.controllers', []).
         mytimeout = $timeout($scope.onTimeout,1000);
     };
 
-    var startTimer = function() {
+    $scope.startTimer = function() {
       if(typeof mytimeout !== "undefined") {
         $timeout.cancel(mytimeout);
         $scope.timerStatus.reset();
@@ -54,6 +54,6 @@ angular.module('pomodoroApp.controllers', []).
 
     $scope.startTask = function(task) {
       $scope.activeTask = task;
-      startTimer();
+      $scope.startTimer();
     };
   }]);
