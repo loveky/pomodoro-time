@@ -21,7 +21,7 @@
     <div class="main-content" ng-controller="pomodoroController">
       <div class="stage">
         <div class="timer-container">
-          <div ang:round:progress data-round-progress-model="timer"
+          <div ang:round:progress data-round-progress-model="timerStatus"
                                   data-round-progress-width="500"
                                   data-round-progress-height="500"
                                   data-round-progress-outer-circle-width="40"
@@ -37,6 +37,7 @@
         </div>
         <div class="active-task">
           <h2>{{ activeTask.title }}</h2>
+          <h2>{{  }}</h2>
         </div>
       </div>
       <div class="task-list-container-outer">
