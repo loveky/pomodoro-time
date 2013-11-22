@@ -61,3 +61,7 @@
 .task:hover .task-operation-container {
   display: block;
 }
+
+.timer-container {
+  background-color: #3c3b49
+}

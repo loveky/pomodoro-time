@@ -1,3 +1,4 @@
 angular.module('pomodoroApp', [
-  'pomodoroApp.controllers'
+  'pomodoroApp.controllers',
+  'angular.directives-round-progress'
 ]);

@@ -6,6 +6,11 @@ angular.module('pomodoroApp.controllers', []).
       {title: "打豆豆", today: false}
     ];
 
+    $scope.timer = {
+      label: '25:00',
+      percentage: 0
+    }
+
     $scope.addTask = function(today) {
       if (typeof $scope.newTask === "undefined") {
         return false;

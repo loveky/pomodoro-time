@@ -10,6 +10,7 @@
     <script src="js/angular.min.js"></script>
     <script src="js/application.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/angular-round-progress-directive.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -19,6 +20,21 @@
     </nav>
     <div class="main-content" ng-controller="pomodoroController">
       <div class="stage">
+        <div class="timer-container">
+          <div ang:round:progress data-round-progress-model="timer"
+                                  data-round-progress-width="500"
+                                  data-round-progress-height="500"
+                                  data-round-progress-outer-circle-width="40"
+                                  data-round-progress-inner-circle-width="10"
+                                  data-round-progress-outer-circle-radius="200"
+                                  data-round-progress-inner-circle-radius="140"
+                                  data-round-progress-label-font="60pt Arial"
+                                  data-round-progress-outer-circle-background-color="#505769"
+                                  data-round-progress-outer-circle-foreground-color="#12eeb9"
+                                  data-round-progress-inner-circle-color="#505769"
+                                  data-round-progress-label-color="#fff">
+          </div>
+        </div>
       </div>
       <div class="task-list-container-outer">
         <div class="input-group">
