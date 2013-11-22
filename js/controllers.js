@@ -28,4 +28,8 @@ angular.module('pomodoroApp.controllers', []).
         }
       }
     };
+
+    $scope.startTask = function(task) {
+      $scope.activeTask = task;
+    };
   }]);

@@ -24,8 +24,13 @@ describe('controllers', function(){
     });
 
     it("should remove task", function() {
-      $scope.removeTask($scope.allTasks[0])
+      $scope.removeTask($scope.allTasks[0]);
       expect($scope.allTasks.length).toEqual(2);
+    });
+
+    it("should set task as activeTask", function() {
+      $scope.startTask($scope.allTasks[0]);
+      expect($scope.activeTask).toEqual($scope.allTasks[0]);
     });
   });
 });

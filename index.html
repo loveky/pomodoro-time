@@ -35,6 +35,9 @@
                                   data-round-progress-label-color="#fff">
           </div>
         </div>
+        <div class="active-task">
+          <h2>{{ activeTask.title }}</h2>
+        </div>
       </div>
       <div class="task-list-container-outer">
         <div class="input-group">
@@ -51,7 +54,7 @@
               <li class="task" ng-repeat="task in allTasks | filter:{today:true}">
                 {{ task.title }}
                 <div class="task-operation-container pull-right">
-                  <button type="button" class="btn btn-success btn-xs"><i class="fa fa-play"></i></button>
+                  <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
                   <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
                   <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
                 </div>
@@ -60,7 +63,6 @@
           </div>
           <div>
             <p>候选任务列表</p>
-            <div>
             <ul class="list-unstyled task-list">
               <li class="task" ng-repeat="task in allTasks | filter:{today:false}">
                 {{ task.title }}
@@ -70,7 +72,6 @@
                 </div>
               </li>
             </ul>
-            </div>
           </div>
         </div>
       </div>
