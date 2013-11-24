@@ -1,10 +1,11 @@
 angular.module('pomodoroApp.controllers', []).
   controller('pomodoroController', ["$scope", "$timeout", function($scope, $timeout) {
-    $scope.allTasks = [
-      {title: "吃饭", today: false},
-      {title: "睡觉", today: false},
-      {title: "打豆豆", today: false}
-    ];
+    $scope.allTasks = { finished: [],
+                        unfinished: [
+                          {title: "吃饭", today: false},
+                          {title: "睡觉", today: false},
+                          {title: "打豆豆", today: false}
+                        ]};
 
     $scope.timerStatus = {
       label: '25:00',
@@ -37,24 +38,15 @@ angular.module('pomodoroApp.controllers', []).
       mytimeout = $timeout($scope.onTimeout,1000);
     };
 
-    // $scope.stopTimer = function() {
-    //   $timeout.cancel(mytimeout);
-    // };
-
-    $scope.addTask = function(today) {
-      if (typeof $scope.newTask === "undefined") {
-        return false;
-      }
-      task = $scope.newTask;
-      task.today = today;
-      $scope.allTasks.push(task);
-      $scope.newTask = {};
+    $scope.stopTimer = function() {
+      $timeout.cancel(mytimeout);
+      $scope.timerStatus.reset();
     };
 
     $scope.removeTask = function(task) {
-      for(index in $scope.allTasks) {
-        if($scope.allTasks[index] === task) {
-          $scope.allTasks.splice(index, 1);
+      for(index in $scope.allTasks.unfinished) {
+        if($scope.allTasks.unfinished[index] === task) {
+          $scope.allTasks.unfinished.splice(index, 1);
         }
       }
     };
@@ -63,6 +55,11 @@ angular.module('pomodoroApp.controllers', []).
       $scope.activeTask = task;
       $scope.startTimer();
     };
+
+    $scope.breakActiveTask = function() {
+      $scope.activeTask = null;
+      $scope.stopTimer();
+    }
 
     $scope.secondsToMMSS =  function(timeInSeconds) {
       var minutes = Math.floor(timeInSeconds / 60);
@@ -74,5 +71,17 @@ angular.module('pomodoroApp.controllers', []).
         seconds = "0" + seconds
       }
       return minutes + ":" + seconds;
+    };
+  }]).
+  controller('pomodoroTasksController', ["$scope", function($scope) {
+    $scope.addTask = function(today) {
+      if (typeof $scope.newTask === "undefined") {
+        return false;
+      }
+      task = $scope.newTask;
+      task.today = today;
+      $scope.allTasks.unfinished.push(task);
+      $scope.newTask = {};
+      $scope.openNewTaskForm = false;
     };
   }]);

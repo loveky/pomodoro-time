@@ -23,11 +23,11 @@
         <div class="stage col-md-6 col-xs-12">
           <div class="timer-container">
             <div ang:round:progress data-round-progress-model="timerStatus"
-                                    data-round-progress-width="500"
-                                    data-round-progress-height="500"
-                                    data-round-progress-outer-circle-width="40"
-                                    data-round-progress-inner-circle-width="10"
-                                    data-round-progress-outer-circle-radius="200"
+                                    data-round-progress-width="400"
+                                    data-round-progress-height="400"
+                                    data-round-progress-outer-circle-width="30"
+                                    data-round-progress-inner-circle-width="5"
+                                    data-round-progress-outer-circle-radius="180"
                                     data-round-progress-inner-circle-radius="140"
                                     data-round-progress-label-font="60pt Arial"
                                     data-round-progress-outer-circle-background-color="#505769"
@@ -38,13 +38,13 @@
           </div>
           <div class="active-task">
             <h2>{{ activeTask.title }}</h2>
-            <h2>{{  }}</h2>
+            <button class="btn btn-danger" ng-show="activeTask" ng-click="breakActiveTask()">中断当前番茄钟</button>
           </div>
         </div>
-        <div class="col-md-3 col-xs-12">
+        <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
           <p>今日任务列表</p>
           <ul class="list-unstyled task-list">
-            <li class="task" ng-repeat="task in allTasks | filter:{today:true}">
+            <li class="task" ng-repeat="task in allTasks.unfinished | filter:{today:true}">
               {{ task.title }}
               <div class="task-operation-container pull-right">
                 <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
@@ -53,11 +53,21 @@
               </div>
             </li>
           </ul>
+          <div ng-show="openNewTaskForm">
+            <div class="form-group">
+              <input type="text" class="form-control input-sm" ng-model="newTask.title">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-sm btn-success" ng-click="addTask(true)">添加</button>
+              <button class="btn btn-sm btn-danger" ng-click="openNewTaskForm=false;newTask.title=''">取消</button>
+            </div>
+          </div>
+          <h4 ng-hide="openNewTaskForm"><small class="open-new-task-form" ng-click="openNewTaskForm=true">添加新任务...</small></h4>
         </div>
-        <div class="col-md-3 col-xs-12">
+        <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
           <p>候选任务列表</p>
           <ul class="list-unstyled task-list">
-            <li class="task" ng-repeat="task in allTasks | filter:{today:false}">
+            <li class="task" ng-repeat="task in allTasks.unfinished | filter:{today:false}">
               {{ task.title }}
               <div class="task-operation-container pull-right">
                 <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
@@ -65,6 +75,16 @@
               </div>
             </li>
           </ul>
+          <div ng-show="openNewTaskForm">
+            <div class="form-group">
+              <input type="text" class="form-control input-sm" ng-model="newTask.title">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-sm btn-success" ng-click="addTask(false)">添加</button>
+              <button class="btn btn-sm btn-danger" ng-click="openNewTaskForm=false;newTask.title=''">取消</button>
+            </div>
+          </div>
+          <h4 ng-hide="openNewTaskForm"><small class="open-new-task-form" ng-click="openNewTaskForm=true">添加新任务...</small></h4>
         </div>
       </div>
     </div>

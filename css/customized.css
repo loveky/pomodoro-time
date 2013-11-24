@@ -17,3 +17,8 @@
   background-color: #3c3b49;
   display: inline-block;
 }
+
+.open-new-task-form:hover {
+  text-decoration: underline;
+  cursor: pointer;
+};

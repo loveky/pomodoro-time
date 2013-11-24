@@ -15,27 +15,14 @@ describe('controllers', function(){
       }
     });
 
-    it('should set 3 default tasks in allTask', function() {
-      expect($scope.allTasks.length).toEqual(3);
-    });
-
-    describe('#addTask', function() {
-      it("should add newTask to allTask if newTask's title not blank", function() {
-        $scope.newTask = {title: "test task"};
-        $scope.addTask()
-        expect($scope.allTasks.length).toEqual(4);
-      });
-
-      it("should not add newTask to allTask if newTask's title is blank", function() {
-        $scope.addTask()
-        expect($scope.allTasks.length).toEqual(3);
-      });
+    it('should set 3 default unfinished tasks in allTask', function() {
+      expect($scope.allTasks.unfinished.length).toEqual(3);
     });
 
     describe('#removeTask', function() {
       it("should remove task", function() {
-        $scope.removeTask($scope.allTasks[0]);
-        expect($scope.allTasks.length).toEqual(2);
+        $scope.removeTask($scope.allTasks.unfinished[0]);
+        expect($scope.allTasks.unfinished.length).toEqual(2);
       });
     });
 
@@ -43,6 +30,14 @@ describe('controllers', function(){
       it("should set task as activeTask", function() {
         $scope.startTask($scope.allTasks[0]);
         expect($scope.activeTask).toBe($scope.allTasks[0]);
+      });
+    });
+
+    describe('#breakActiveTask', function() {
+      it("should unset activeTask", function() {
+        $scope.startTask($scope.allTasks[0]);
+        $scope.breakActiveTask();
+        expect($scope.activeTask).toBe(null);
       });
     });
 
@@ -73,14 +68,14 @@ describe('controllers', function(){
       })
     });
 
-    // describe('#stopTimer', function() {
-    //   it("should cancel timer", function() {
-    //     mytimeout = $timeout($scope.onTimeout,1000);
-    //     spyOn($timeout, 'cancel');
-    //     $scope.stopTimer();
-    //     expect($timeout.cancel).toHaveBeenCalledWith(mytimeout);
-    //   })
-    // });
+    describe('#stopTimer', function() {
+      it("should cancel timer", function() {
+        mytimeout = $timeout($scope.onTimeout,1000);
+        spyOn($timeout, 'cancel');
+        $scope.stopTimer();
+        expect($timeout.cancel).toHaveBeenCalledWith(mytimeout);
+      })
+    });
 
     describe('#onTimeout', function() {
       it("should increase timerStatus.count by 1", function() {
