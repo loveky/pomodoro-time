@@ -73,6 +73,15 @@ describe('controllers', function(){
       })
     });
 
+    // describe('#stopTimer', function() {
+    //   it("should cancel timer", function() {
+    //     mytimeout = $timeout($scope.onTimeout,1000);
+    //     spyOn($timeout, 'cancel');
+    //     $scope.stopTimer();
+    //     expect($timeout.cancel).toHaveBeenCalledWith(mytimeout);
+    //   })
+    // });
+
     describe('#onTimeout', function() {
       it("should increase timerStatus.count by 1", function() {
         $scope.onTimeout();

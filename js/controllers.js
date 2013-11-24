@@ -21,7 +21,12 @@ angular.module('pomodoroApp.controllers', []).
         $scope.timerStatus.count++;
         $scope.timerStatus.percentage = $scope.timerStatus.count / (25 * 60);
         $scope.timerStatus.label = $scope.secondsToMMSS(25 * 60 - $scope.timerStatus.count);
-        mytimeout = $timeout($scope.onTimeout,1000);
+        if ($scope.timerStatus.percentage >= 1) {
+
+        }
+        else {
+          mytimeout = $timeout($scope.onTimeout,1000);
+        }
     };
 
     $scope.startTimer = function() {
@@ -31,9 +36,10 @@ angular.module('pomodoroApp.controllers', []).
       }
       mytimeout = $timeout($scope.onTimeout,1000);
     };
-    // $scope.stop = function(){
-    //     $timeout.cancel(mytimeout);
-    // }
+
+    // $scope.stopTimer = function() {
+    //   $timeout.cancel(mytimeout);
+    // };
 
     $scope.addTask = function(today) {
       if (typeof $scope.newTask === "undefined") {
