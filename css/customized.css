@@ -21,4 +21,18 @@
 .open-new-task-form:hover {
   text-decoration: underline;
   cursor: pointer;
-};
+}
+
+.task .task-description {
+  background-color: #FDF7F7;
+  display: none;
+}
+
+.task:hover .task-description {
+  display: block;
+}
+
+.new-task-form .form-group {
+  margin-bottom: 5px;
+}
+

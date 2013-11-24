@@ -2,9 +2,9 @@ angular.module('pomodoroApp.controllers', []).
   controller('pomodoroController', ["$scope", "$timeout", function($scope, $timeout) {
     $scope.allTasks = { finished: [],
                         unfinished: [
-                          {title: "吃饭", today: false},
-                          {title: "睡觉", today: false},
-                          {title: "打豆豆", today: false}
+                          {title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false},
+                          {title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false},
+                          {title: "打豆豆", description: "Matz 曾说过“你应该升级到 Ruby 2.0 了”", today: false}
                         ]};
 
     $scope.timerStatus = {
