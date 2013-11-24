@@ -18,62 +18,53 @@
         <a class="navbar-brand" href="#">番茄时间</a>
       </div>
     </nav>
-    <div class="main-content" ng-controller="pomodoroController">
-      <div class="stage">
-        <div class="timer-container">
-          <div ang:round:progress data-round-progress-model="timerStatus"
-                                  data-round-progress-width="500"
-                                  data-round-progress-height="500"
-                                  data-round-progress-outer-circle-width="40"
-                                  data-round-progress-inner-circle-width="10"
-                                  data-round-progress-outer-circle-radius="200"
-                                  data-round-progress-inner-circle-radius="140"
-                                  data-round-progress-label-font="60pt Arial"
-                                  data-round-progress-outer-circle-background-color="#505769"
-                                  data-round-progress-outer-circle-foreground-color="#12eeb9"
-                                  data-round-progress-inner-circle-color="#505769"
-                                  data-round-progress-label-color="#fff">
+    <div class="container" ng-controller="pomodoroController">
+      <div class="row">
+        <div class="stage col-md-6 col-xs-12">
+          <div class="timer-container">
+            <div ang:round:progress data-round-progress-model="timerStatus"
+                                    data-round-progress-width="500"
+                                    data-round-progress-height="500"
+                                    data-round-progress-outer-circle-width="40"
+                                    data-round-progress-inner-circle-width="10"
+                                    data-round-progress-outer-circle-radius="200"
+                                    data-round-progress-inner-circle-radius="140"
+                                    data-round-progress-label-font="60pt Arial"
+                                    data-round-progress-outer-circle-background-color="#505769"
+                                    data-round-progress-outer-circle-foreground-color="#12eeb9"
+                                    data-round-progress-inner-circle-color="#505769"
+                                    data-round-progress-label-color="#fff">
+            </div>
+          </div>
+          <div class="active-task">
+            <h2>{{ activeTask.title }}</h2>
+            <h2>{{  }}</h2>
           </div>
         </div>
-        <div class="active-task">
-          <h2>{{ activeTask.title }}</h2>
-          <h2>{{  }}</h2>
+        <div class="col-md-3 col-xs-12">
+          <p>今日任务列表</p>
+          <ul class="list-unstyled task-list">
+            <li class="task" ng-repeat="task in allTasks | filter:{today:true}">
+              {{ task.title }}
+              <div class="task-operation-container pull-right">
+                <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
+                <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
+              </div>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div class="task-list-container-outer">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="newTask.title">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" ng-click="addTask(true)"><i class="fa fa-plus"></i> 今日任务</button>
-            <button class="btn btn-info" type="button" ng-click="addTask(false)"><i class="fa fa-plus"></i> 候选任务</button>
-          </span>
-        </div>
-        <div class="task-list-container-inner">
-          <div>
-            <p>今日任务列表</p>
-            <ul class="list-unstyled task-list">
-              <li class="task" ng-repeat="task in allTasks | filter:{today:true}">
-                {{ task.title }}
-                <div class="task-operation-container pull-right">
-                  <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
-                  <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
-                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p>候选任务列表</p>
-            <ul class="list-unstyled task-list">
-              <li class="task" ng-repeat="task in allTasks | filter:{today:false}">
-                {{ task.title }}
-                <div class="task-operation-container pull-right">
-                  <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
-                </div>
-              </li>
-            </ul>
-          </div>
+        <div class="col-md-3 col-xs-12">
+          <p>候选任务列表</p>
+          <ul class="list-unstyled task-list">
+            <li class="task" ng-repeat="task in allTasks | filter:{today:false}">
+              {{ task.title }}
+              <div class="task-operation-container pull-right">
+                <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
+                <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
