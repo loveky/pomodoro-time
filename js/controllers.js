@@ -18,6 +18,25 @@ angular.module('pomodoroApp.controllers', []).
       }
     };
 
+    $scope.notifyMe = function() {
+      if (!("Notification" in window)) {
+        return false;
+      }
+      else if (Notification.permission === "granted") {
+        var notification = new Notification("恭喜你！", {body: "又完成了一个番茄钟!", icon: "/image/notification-icon.jpg"});
+      }
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          if(!('permission' in Notification)) {
+            Notification.permission = permission;
+          }
+          if (permission === "granted") {
+            var notification = new Notification("恭喜你！", {body: "又完成了一个番茄钟!", icon: "/image/notification-icon.jpg"});
+          }
+        });
+      }
+    };
+
     $scope.onTimeout = function(){
         $scope.timerStatus.count++;
         $scope.timerStatus.percentage = $scope.timerStatus.count / (25 * 60);
