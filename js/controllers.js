@@ -1,5 +1,5 @@
 angular.module('pomodoroApp.controllers', []).
-  controller('pomodoroController', ["$scope", "$timeout", function($scope, $timeout) {
+  controller('pomodoroController', ["$scope", "$timeout", "$modal", function($scope, $timeout, $modal) {
     $scope.allTasks = { finished: [],
                         unfinished: [
                           {title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false},
@@ -18,23 +18,12 @@ angular.module('pomodoroApp.controllers', []).
       }
     };
 
-    $scope.notifyMe = function() {
-      if (!("Notification" in window)) {
-        return false;
-      }
-      else if (Notification.permission === "granted") {
-        var notification = new Notification("恭喜你！", {body: "又完成了一个番茄钟!", icon: "/image/notification-icon.jpg"});
-      }
-      else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function (permission) {
-          if(!('permission' in Notification)) {
-            Notification.permission = permission;
-          }
-          if (permission === "granted") {
-            var notification = new Notification("恭喜你！", {body: "又完成了一个番茄钟!", icon: "/image/notification-icon.jpg"});
-          }
-        });
-      }
+    $scope.askForFinishStatus = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'askForFinishStatus.html',
+        keyboard: false
+      });
     };
 
     $scope.onTimeout = function(){
@@ -42,7 +31,7 @@ angular.module('pomodoroApp.controllers', []).
         $scope.timerStatus.percentage = $scope.timerStatus.count / (25 * 60);
         $scope.timerStatus.label = $scope.secondsToMMSS(25 * 60 - $scope.timerStatus.count);
         if ($scope.timerStatus.percentage >= 1) {
-
+          $scope.askForFinishStatus();
         }
         else {
           mytimeout = $timeout($scope.onTimeout,1000);

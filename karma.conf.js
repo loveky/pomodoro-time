@@ -15,6 +15,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'js/lib/angular.min.js',
+      'js/lib/modal.js',
       'js/*.js',
       'test/lib/*.js',
       'test/**/*Spec.js'

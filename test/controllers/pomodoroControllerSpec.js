@@ -1,5 +1,6 @@
 describe('controllers', function(){
   beforeEach(module('pomodoroApp.controllers'));
+  beforeEach(module('ui.bootstrap.modal'));
 
   describe('pomodoroController', function() {
     var scope, ctrl;
