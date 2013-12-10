@@ -28,7 +28,19 @@
   display: none;
 }
 
-.task:hover .task-description {
+.task:hover .task-description{
+  display: block;
+}
+
+.task .task-pomodoros {
+  display: none;
+}
+
+.task .task-pomodoros img {
+  height: 20px;
+}
+
+.task:hover .task-pomodoros {
   display: block;
 }
 

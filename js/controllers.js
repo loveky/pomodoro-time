@@ -2,9 +2,9 @@ angular.module('pomodoroApp.controllers', []).
   controller('pomodoroController', ["$scope", "$timeout", "$modal", function($scope, $timeout, $modal) {
     $scope.allTasks = { finished: [],
                         unfinished: [
-                          {title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false},
-                          {title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false},
-                          {title: "打豆豆", description: "Matz 曾说过“你应该升级到 Ruby 2.0 了”", today: false}
+                          {title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false, used_pomodoro: 0},
+                          {title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false, used_pomodoro: 0},
+                          {title: "打豆豆", description: "Matz 曾说过“你应该升级到 Ruby 2.0 了”", today: false, used_pomodoro: 0}
                         ]};
 
     $scope.timerStatus = {
@@ -18,11 +18,27 @@ angular.module('pomodoroApp.controllers', []).
       }
     };
 
+    $scope.getTimes = function(n) {
+      return new Array(n);
+    };
+
     $scope.askForFinishStatus = function () {
 
       var modalInstance = $modal.open({
         templateUrl: 'askForFinishStatus.html',
-        keyboard: false
+        keyboard: false,
+        controller: 'askForFinishStatusController'
+      });
+
+      modalInstance.result.then(function(status) {
+        $scope.activeTask.used_pomodoro += 1;
+        if(status === true) {
+          $scope.allTasks.finished.push($scope.activeTask);
+          $scope.removeTask($scope.activeTask);
+        }
+
+        $scope.timerStatus.reset();
+        $scope.activeTask = null;
       });
     };
 
@@ -91,5 +107,10 @@ angular.module('pomodoroApp.controllers', []).
       $scope.allTasks.unfinished.push(task);
       $scope.newTask = {};
       $scope.openNewTaskForm = false;
+    };
+  }]).
+  controller('askForFinishStatusController', ["$scope", "$modalInstance", function($scope, $modalInstance) {
+    $scope.close = function(status) {
+      $modalInstance.close(status);
     };
   }]);

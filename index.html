@@ -56,6 +56,9 @@
               <div class="task-description">
                 {{ task.description }}
               </div>
+              <div class="task-pomodoros">
+                <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
+              </div>
             </li>
           </ul>
           <div ng-show="openNewTaskForm" class="new-task-form">
@@ -84,6 +87,9 @@
               <div class="task-description">
                 {{ task.description }}
               </div>
+              <div class="task-pomodoros">
+                <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
+              </div>
             </li>
           </ul>
           <div ng-show="openNewTaskForm" class="new-task-form">
@@ -111,8 +117,8 @@
         <h3 class="pull-right">已经完成该任务？</h3>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success">是的，我已完成</button>
-        <button class="btn btn-warning">没有，我还需要更多番茄钟</button>
+        <button class="btn btn-success" ng-click="close(true)">是的，我已完成</button>
+        <button class="btn btn-warning" ng-click="close(false)">没有，我还需要更多番茄钟</button>
       </div>
     </script>
   </body>
