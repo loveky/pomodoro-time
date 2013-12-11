@@ -45,19 +45,23 @@
         </div>
         <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
           <p>今日任务列表</p>
-          <ul class="list-unstyled task-list">
+          <ul class="list-unstyled task-list today-task-list">
             <li class="task" ng-repeat="task in allTasks.unfinished | filter:{today:true}">
-              {{ task.title }}
+              <div class="task-title pull-left">
+                {{ task.title }}
+              </div>
               <div class="task-operation-container pull-right">
                 <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
                 <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
                 <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
               </div>
-              <div class="task-description">
-                {{ task.description }}
-              </div>
-              <div class="task-pomodoros">
-                <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
+              <div class="task-details">
+                <div class="task-description">
+                  {{ task.description }}
+                </div>
+                <div class="task-pomodoros">
+                  <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
+                </div>
               </div>
             </li>
           </ul>
@@ -73,22 +77,28 @@
               <button class="btn btn-sm btn-danger" ng-click="openNewTaskForm=false;newTask.title=''">取消</button>
             </div>
           </div>
-          <h4 ng-hide="openNewTaskForm"><small class="open-new-task-form" ng-click="openNewTaskForm=true">添加新任务...</small></h4>
+          <h4 ng-hide="openNewTaskForm">
+            <small class="open-new-task-form" ng-click="openNewTaskForm=true">添加新任务...</small>
+          </h4>
         </div>
         <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
           <p>候选任务列表</p>
           <ul class="list-unstyled task-list">
             <li class="task" ng-repeat="task in allTasks.unfinished | filter:{today:false}">
-              {{ task.title }}
+              <div class="task-title pull-left">
+                {{ task.title }}
+              </div>
               <div class="task-operation-container pull-right">
                 <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
                 <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
               </div>
-              <div class="task-description">
-                {{ task.description }}
-              </div>
-              <div class="task-pomodoros">
-                <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
+              <div class="task-details">
+                <div class="task-description">
+                  {{ task.description }}
+                </div>
+                <div class="task-pomodoros">
+                  <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
+                </div>
               </div>
             </li>
           </ul>
@@ -104,7 +114,9 @@
               <button class="btn btn-sm btn-danger" ng-click="openNewTaskForm=false;newTask.title=''">取消</button>
             </div>
           </div>
-          <h4 ng-hide="openNewTaskForm"><small class="open-new-task-form" ng-click="openNewTaskForm=true">添加新任务...</small></h4>
+          <h4 ng-hide="openNewTaskForm" class="new-task-link">
+            <small class="open-new-task-form" ng-click="openNewTaskForm=true">添加新任务...</small>
+          </h4>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
-.task-list {
+.task-list > * {
+  clear: both;
 }
 
 .task:hover {
@@ -23,28 +24,33 @@
   cursor: pointer;
 }
 
-.task .task-description {
-  background-color: #FDF7F7;
+.task .task-details {
+  clear: both;
   display: none;
 }
 
-.task:hover .task-description{
+.task:hover .task-details {
   display: block;
 }
 
-.task .task-pomodoros {
-  display: none;
+.today-task-list .task .task-details {
+  display: block;
 }
+
+.task .task-description {
+  word-wrap: break-word;
+  background-color: #FDF7F7;
+}
+
 
 .task .task-pomodoros img {
   height: 20px;
-}
-
-.task:hover .task-pomodoros {
-  display: block;
 }
 
 .new-task-form .form-group {
   margin-bottom: 5px;
 }
 
+.new-task-form, .new-task-link {
+  clear: both;
+}
