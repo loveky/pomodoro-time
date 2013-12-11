@@ -25,8 +25,8 @@
         <div class="stage col-md-6 col-xs-12">
           <div class="timer-container">
             <div ang:round:progress data-round-progress-model="timerStatus"
-                                    data-round-progress-width="400"
-                                    data-round-progress-height="400"
+                                    data-round-progress-width="450"
+                                    data-round-progress-height="450"
                                     data-round-progress-outer-circle-width="30"
                                     data-round-progress-inner-circle-width="5"
                                     data-round-progress-outer-circle-radius="180"
@@ -39,14 +39,17 @@
             </div>
           </div>
           <div class="active-task">
-            <h2>{{ activeTask.title }}</h2>
+            <div class="bs-callout bs-callout-info" ng-show="activeTask">
+              <h4>{{ activeTask.title }}</h4>
+              <p>{{ activeTask.description }}</p>
+            </div>
             <button class="btn btn-danger" ng-show="activeTask" ng-click="breakActiveTask()">中断当前番茄钟</button>
           </div>
         </div>
         <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
           <div class="well well-sm">今日任务列表</div>
           <ul class="list-unstyled task-list today-task-list">
-            <li class="task panel panel-info" ng-repeat="task in allTasks.unfinished | filter:{today:true}">
+            <li class="task panel panel-success" ng-repeat="task in allTasks.unfinished | filter:{today:true}">
               <div class="task-heading panel-heading">
                 <div class="task-title panel-title">
                   {{ task.title }}
@@ -86,7 +89,7 @@
         <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
           <div class="well well-sm">候选任务列表</div>
           <ul class="list-unstyled task-list">
-            <li class="task panel panel-warning" ng-repeat="task in allTasks.unfinished | filter:{today:false}">
+            <li class="task panel panel-primary" ng-repeat="task in allTasks.unfinished | filter:{today:false}">
               <div class="task-heading panel-heading">
                 <div class="task-title panel-title">
                   {{ task.title }}
