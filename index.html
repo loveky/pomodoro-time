@@ -4,6 +4,8 @@
     <title>番茄时间</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/x-icon" rel="icon" href="favicon.ico">
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/customized.css" rel="stylesheet">
@@ -11,6 +13,20 @@
     <script src="js/lib/angular.min.js"></script>
     <script src="js/lib/angular-round-progress-directive.js"></script>
     <script src="js/lib/modal.js"></script>
+    <script src="js/lib/piecon.min.js"></script>
+
+    <script>
+      (function(){
+        Piecon.setOptions({
+          fallback: 'force',
+          color: '#12eeb9',
+          background: '#505769'
+        });
+
+        Piecon.reset();
+      })();
+    </script>
+
     <script src="js/application.js"></script>
     <script src="js/controllers.js"></script>
   </head>

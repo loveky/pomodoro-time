@@ -52,6 +52,7 @@ angular.module('pomodoroApp.controllers', []).
         else {
           mytimeout = $timeout($scope.onTimeout,1000);
         }
+        Piecon.setProgress(Math.floor($scope.timerStatus.percentage * 100));
     };
 
     $scope.startTimer = function() {
@@ -113,5 +114,6 @@ angular.module('pomodoroApp.controllers', []).
   controller('askForFinishStatusController', ["$scope", "$modalInstance", function($scope, $modalInstance) {
     $scope.close = function(status) {
       $modalInstance.close(status);
+      Piecon.reset();
     };
   }]);
