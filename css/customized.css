@@ -54,3 +54,11 @@
 .new-task-form, .new-task-link {
   clear: both;
 }
+
+.task-title {
+  width: 100%;
+}
+
+.task-operation-container {
+  margin-left: -100%;
+}
