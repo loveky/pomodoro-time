@@ -2,12 +2,16 @@
   clear: both;
 }
 
-.task:hover {
-  background-color: #f5f5f5;
+.task {
+  position: relative;
+  margin-bottom: 0px;
 }
 
 .task .task-operation-container {
   display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
 .task:hover .task-operation-container {
@@ -33,15 +37,21 @@
   display: block;
 }
 
+.today-task-list .task {
+  margin-bottom: 5px;
+}
+
 .today-task-list .task .task-details {
   display: block;
 }
 
 .task .task-description {
   word-wrap: break-word;
-  background-color: #FDF7F7;
 }
 
+.task .task-pomodoros {
+  padding: 0px;
+}
 
 .task .task-pomodoros img {
   height: 20px;

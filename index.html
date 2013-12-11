@@ -44,24 +44,26 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
-          <p>今日任务列表</p>
+          <div class="well well-sm">今日任务列表</div>
           <ul class="list-unstyled task-list today-task-list">
-            <li class="task" ng-repeat="task in allTasks.unfinished | filter:{today:true}">
-              <div class="task-title pull-left">
-                {{ task.title }}
+            <li class="task panel panel-info" ng-repeat="task in allTasks.unfinished | filter:{today:true}">
+              <div class="task-heading panel-heading">
+                <div class="task-title panel-title">
+                  {{ task.title }}
+                </div>
+                <div class="task-operation-container">
+                  <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
+                  <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
+                </div>
               </div>
-              <div class="task-operation-container pull-right">
-                <button type="button" class="btn btn-success btn-xs" ng-click="startTask(task)"><i class="fa fa-play"></i></button>
-                <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=false"><i class="fa fa-share"></i></button>
-                <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
-              </div>
-              <div class="task-details">
+              <div class="task-details panel-body">
                 <div class="task-description">
                   {{ task.description }}
                 </div>
-                <div class="task-pomodoros">
-                  <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
-                </div>
+              </div>
+              <div class="task-pomodoros panel-footer">
+                <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
               </div>
             </li>
           </ul>
@@ -82,23 +84,25 @@
           </h4>
         </div>
         <div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
-          <p>候选任务列表</p>
+          <div class="well well-sm">候选任务列表</div>
           <ul class="list-unstyled task-list">
-            <li class="task" ng-repeat="task in allTasks.unfinished | filter:{today:false}">
-              <div class="task-title pull-left">
-                {{ task.title }}
+            <li class="task panel panel-warning" ng-repeat="task in allTasks.unfinished | filter:{today:false}">
+              <div class="task-heading panel-heading">
+                <div class="task-title panel-title">
+                  {{ task.title }}
+                </div>
+                <div class="task-operation-container">
+                  <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
+                  <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
+                </div>
               </div>
-              <div class="task-operation-container pull-right">
-                <button type="button" class="btn btn-warning btn-xs" ng-click="task.today=true"><i class="fa fa-reply"></i></button>
-                <button type="button" class="btn btn-danger btn-xs" ng-click="removeTask(task)"><i class="fa fa-trash-o"></i></button>
-              </div>
-              <div class="task-details">
+              <div class="task-details panel-body">
                 <div class="task-description">
                   {{ task.description }}
                 </div>
-                <div class="task-pomodoros">
-                  <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
-                </div>
+              </div>
+              <div class="task-pomodoros panel-footer">
+                <img src="/image/tomato.png" ng-repeat="t in getTimes(task.used_pomodoro) track by $index">
               </div>
             </li>
           </ul>
