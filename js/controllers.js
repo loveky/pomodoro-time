@@ -103,6 +103,7 @@ angular.module('pomodoroApp.controllers', []).
         return false;
       }
       task = $scope.newTask;
+      task.used_pomodoro = 0;
       task.today = today;
       $scope.allTasks.unfinished.push(task);
       $scope.newTask = {};
