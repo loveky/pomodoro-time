@@ -30,13 +30,22 @@
     <script src="js/application.js"></script>
     <script src="js/controllers.js"></script>
   </head>
-  <body>
+  <body ng-controller="pomodoroController">
     <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">番茄时间</a>
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">番茄时间</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <form role="form" class="navbar-form navbar-right">
+            <button class="btn btn-success" ng-click="requestNotificationPermission()">
+              <i class="fa fa-clock-o"></i> 开启桌面提醒
+            </button>
+          </form>
+        </div>
       </div>
     </nav>
-    <div class="container" ng-controller="pomodoroController">
+    <div class="container">
       <div class="row">
         <div class="stage col-md-6 col-xs-12">
           <div class="timer-container">

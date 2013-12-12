@@ -29,6 +29,10 @@ angular.module('pomodoroApp.controllers', []).
       }
     };
 
+    $scope.config = {
+      desktopNotification: false
+    };
+
     $scope.getTimes = function(n) {
       return new Array(n);
     };
@@ -53,6 +57,30 @@ angular.module('pomodoroApp.controllers', []).
       });
     };
 
+    $scope.requestNotificationPermission = function() {
+      $scope.config.desktopNotification = true;
+      if ($window.Notification.permission !== 'denied' || $window.Notification.permission !== 'granted') {
+        $window.Notification.requestPermission(function (permission) {
+          if(!(permission in $window.Notification)) {
+            $window.Notification.permission = permission;
+          }
+        });
+      }
+    }
+
+    $scope.showDesktopNotification = function() {
+      if(window.chrome) {
+        new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "/image/notification-icon.jpg"});
+      }
+      else {
+        $window.Notification.requestPermission(function (permission){
+          if(permission == 'granted') {
+            new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "/image/notification-icon.jpg"});
+          }
+        });
+      }
+    };
+
     $scope.onTimeout = function(){
         $scope.timerStatus.count++;
         $scope.timerStatus.percentage = $scope.timerStatus.count / (25 * 60);
@@ -60,6 +88,9 @@ angular.module('pomodoroApp.controllers', []).
         if ($scope.timerStatus.percentage >= 1) {
           $scope.askForFinishStatus();
           $scope.alertAudio.play();
+          if ($scope.config.desktopNotification) {
+            $scope.showDesktopNotification();
+          }
         }
         else {
           mytimeout = $timeout($scope.onTimeout,1000);
@@ -123,7 +154,7 @@ angular.module('pomodoroApp.controllers', []).
       $scope.openNewTaskForm = false;
     };
   }]).
-  controller('askForFinishStatusController', ["$scope", "$modalInstance", function($scope, $modalInstance) {
+  controller('askForFinishStatusController', ["$scope", "$modalInstance", "$window", function($scope, $modalInstance, $window) {
     $scope.close = function(status) {
       $modalInstance.close(status);
       $window.Piecon.reset();
