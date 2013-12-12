@@ -6,8 +6,10 @@ describe('controllers', function(){
     var scope, ctrl;
     beforeEach(inject(function($rootScope, $controller, $injector) {
       $timeout = $injector.get('$timeout');
+      $modal = $injector.get('$modal');
+      $window = $injector.get('$window');
       $scope = $rootScope.$new();
-      ctrl = $controller('pomodoroController', {$scope: $scope, $timeout: $timeout});
+      ctrl = $controller('pomodoroController', {$scope: $scope, $timeout: $timeout, $modal: $modal, $window: $window});
     }));
 
     afterEach(function() {
@@ -79,6 +81,12 @@ describe('controllers', function(){
     });
 
     describe('#onTimeout', function() {
+      beforeEach(function() {
+        $window.Piecon = {
+          setProgress: function() {}
+        };
+      });
+
       it("should increase timerStatus.count by 1", function() {
         $scope.onTimeout();
         expect($scope.timerStatus.count).toEqual(1);
