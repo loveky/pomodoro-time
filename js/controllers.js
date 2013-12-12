@@ -1,5 +1,16 @@
 angular.module('pomodoroApp.controllers', []).
   controller('pomodoroController', ["$scope", "$timeout", "$modal", function($scope, $timeout, $modal) {
+    mp3Source = document.createElement('source');
+    mp3Source.setAttribute('src', '/audios/alert.mp3');
+    oggSource = document.createElement('source');
+    oggSource.setAttribute('src', '/audios/alert.ogg');
+    alertAudio = document.createElement('audio');
+    alertAudio.appendChild(mp3Source);
+    alertAudio.appendChild(oggSource);
+    alertAudio.load()
+
+    $scope.alertAudio = alertAudio;
+
     $scope.allTasks = { finished: [],
                         unfinished: [
                           {title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false, used_pomodoro: 0},
@@ -48,6 +59,7 @@ angular.module('pomodoroApp.controllers', []).
         $scope.timerStatus.label = $scope.secondsToMMSS(25 * 60 - $scope.timerStatus.count);
         if ($scope.timerStatus.percentage >= 1) {
           $scope.askForFinishStatus();
+          $scope.alertAudio.play();
         }
         else {
           mytimeout = $timeout($scope.onTimeout,1000);
