@@ -158,3 +158,13 @@
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
+footer {
+  margin-top: 20px;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 3px;
+}
+
+footer p {
+  text-align: center;
+}
