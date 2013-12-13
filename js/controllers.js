@@ -70,12 +70,12 @@ angular.module('pomodoroApp.controllers', []).
 
     $scope.showDesktopNotification = function() {
       if(window.chrome) {
-        new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "/image/notification-icon.jpg"});
+        new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "./image/notification-icon.jpg"});
       }
       else {
         $window.Notification.requestPermission(function (permission){
           if(permission == 'granted') {
-            new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "/image/notification-icon.jpg"});
+            new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "./image/notification-icon.jpg"});
           }
         });
       }
