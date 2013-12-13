@@ -58,7 +58,7 @@ angular.module('pomodoroApp.controllers', []).
     };
 
     $scope.requestNotificationPermission = function() {
-      $scope.config.desktopNotification = true;
+      $scope.config.desktopNotification = ! $scope.config.desktopNotification;
       if ($window.Notification.permission !== 'denied' || $window.Notification.permission !== 'granted') {
         $window.Notification.requestPermission(function (permission) {
           if(!(permission in $window.Notification)) {
