@@ -159,13 +159,14 @@
     right: 0px; 
 }
 
+body > .container {
+  min-height: 700px;
+}
+
 footer {
   margin-top: 20px;
   border-top: 1px solid #e5e5e5;
   padding-top: 3px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
 }
 
 footer p {
