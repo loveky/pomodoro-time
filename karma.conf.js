@@ -16,6 +16,7 @@ module.exports = function(config) {
     files: [
       'js/lib/angular.min.js',
       'js/lib/modal.js',
+      'js/lib/piecon.min.js',
       'js/*.js',
       'test/lib/*.js',
       'test/**/*Spec.js'

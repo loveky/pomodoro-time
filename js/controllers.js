@@ -127,6 +127,7 @@ angular.module('pomodoroApp.controllers', []).
     $scope.breakActiveTask = function() {
       $scope.activeTask = null;
       $scope.stopTimer();
+      $window.Piecon.reset();
     }
 
     $scope.secondsToMMSS =  function(timeInSeconds) {

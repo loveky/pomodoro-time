@@ -81,12 +81,6 @@ describe('controllers', function(){
     });
 
     describe('#onTimeout', function() {
-      beforeEach(function() {
-        $window.Piecon = {
-          setProgress: function() {}
-        };
-      });
-
       it("should increase timerStatus.count by 1", function() {
         $scope.onTimeout();
         expect($scope.timerStatus.count).toEqual(1);
